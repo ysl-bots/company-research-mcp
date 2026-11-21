@@ -92,9 +92,10 @@ def send_updates(endpoint: str, token: str, batch: list[dict]):
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="로컬 코스피 공시를 D1으로 동기화합니다.")
+    parser = argparse.ArgumentParser(description="로컬 코스피 공시 또는 기업 조사 자료를 D1으로 동기화합니다.")
     parser.add_argument("--db", type=Path, default=database_path())
     parser.add_argument("--dry-run", action="store_true", help="D1에 접속하지 않고 동기화 대상과 크기를 확인")
+    parser.add_argument("--research-only", action="store_true", help="기업 소개와 채용 자료만 동기화")
     args = parser.parse_args()
     account = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")
     database = os.getenv("DART_D1_DATABASE_ID", "")
@@ -108,7 +109,12 @@ def main() -> int:
     endpoint = f"https://api.cloudflare.com/client/v4/accounts/{account}/d1/database/{database}/query"
     count = largest_payload = 0
     try:
-        rows = updates(args.db.expanduser())
+        if args.research_only:
+            from .research_d1 import research_updates
+
+            rows = research_updates(args.db.expanduser())
+        else:
+            rows = updates(args.db.expanduser())
         with closing(rows):
             while group := list(islice(rows, 10)):
                 largest_payload = max(largest_payload, *(len(pair[1]["params"][-1].encode()) for pair in group))

@@ -12,6 +12,7 @@ from dart_job_seeker.d1 import updates
 from dart_job_seeker.dart import Dart, DartError, xml_root
 from dart_job_seeker.profile import collect_profile, finances, headcount, report_index, select_evidence
 from dart_job_seeker.storage import connect, initialize, load_profile, save_profile, search_companies
+from dart_job_seeker.materials import import_materials
 
 
 DOCUMENT = """
@@ -153,6 +154,29 @@ class ProfileTest(unittest.TestCase):
 
 
 class BatchStorageTest(unittest.TestCase):
+    def test_material_import_is_atomic_idempotent_and_preserves_dart_tables(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            db_path = root / "clean.sqlite3"
+            initialize(db_path)
+            save_profile(db_path, COMPANY, 2024, "2026-11-21T00:00:00+00:00", {"periods": []})
+            materials = Path(__file__).parents[1] / "company_materials.json"
+            self.assertEqual(import_materials(materials, db_path), 3)
+            self.assertEqual(import_materials(materials, db_path), 3)
+            with closing(connect(db_path, readonly=True)) as db:
+                self.assertEqual(db.execute("SELECT count(*) FROM company_materials").fetchone()[0], 3)
+                self.assertEqual({row[0] for row in db.execute("SELECT checked_date FROM company_materials")}, {"2026-11-21"})
+                self.assertEqual(db.execute("SELECT count(*) FROM profiles").fetchone()[0], 1)
+                codes = {row[0] for row in db.execute("SELECT corp_code FROM company_materials")}
+                self.assertEqual(codes, {"00126380", "00164779", "00164742"})
+
+            broken = root / "broken.json"
+            broken.write_text('{"schema_version":1,"checked_date":"2026-11-21","collection":{},"companies":[]}', encoding="utf-8")
+            with self.assertRaises(ValueError):
+                import_materials(broken, db_path)
+            with closing(connect(db_path, readonly=True)) as db:
+                self.assertEqual(db.execute("SELECT count(*) FROM company_materials").fetchone()[0], 3)
+
     def test_batch_keeps_good_data_when_refresh_fails(self):
         with TemporaryDirectory() as directory, redirect_stdout(StringIO()), redirect_stderr(StringIO()):
             path = Path(directory) / "cache ? 공시.sqlite3"

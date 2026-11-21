@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-11-21",
+  "collection": {
+    "method": "Codex Web Search search_query followed by open of official corporate and recruitment pages; HTML text inspected in returned page lines. No images were visually inspected; image-only claims were excluded.",
+    "scope": "회사 개요와 채용·인재·공식 업무문화 근거만 수록. IR, 보도자료 제외. 확인일은 Asia/Seoul 날짜.",
+    "limitations": "각 법인과 8자리 DART 고유번호는 제공된 공식 DART 기업개황 팝업 URL에서 HTTP 200 및 한글 법인명을 확인함. 공식 회사 전체 인재상 페이지에서 명시적 인재 기준을 확인하지 못한 경우, 채용 절차와 업무문화는 별도 맥락 근거로 보존하고 인재 기준은 미검증으로 표시함. 삼성 DS recruit는 삼성전자 DS부문 한정이며 전사 인재기준으로 일반화하지 않음. 이미지에만 있는 내용을 시각 확인하지 않은 경우 이를 근거에 넣지 않음."
+  },
+  "companies": [
+    {
+      "corp_code": "00126380",
+      "corp_code_status": "verified",
+      "legal_name": "삼성전자 주식회사",
+      "stock_code": "005930",
+      "identity_status": "verified",
+      "homepage_url": "https://www.samsung.com/sec/about-us/company-info/",
+      "careers_url": "https://www.samsung.com/sec/about-us/careers/kr/",
+      "scope": "삼성전자 법인. 삼성전자 DS부문 recruit 페이지 근거는 DS부문 한정으로 명시.",
+      "sources": [
+        {"url":"https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00126380","heading":"회사명 삼성전자","kind":"identity_verification","status":"verified","claims":["공식 DART 기업개황 페이지가 삼성전자 법인과 고유번호 00126380을 확인한다."],"html_method":"사용자가 직접 열어 HTTP 200 응답 및 한글 법인명 일치를 확인 (2026-11-21).","image_method":"이미지 확인은 수행하지 않음.","scope":"삼성전자 법인명과 DART 고유번호 확인."},
+        {"url":"https://www.samsung.com/sec/about-us/company-info/","heading":"기업 정보; 삼성전자가 지켜나갈 약속; 삼성전자가 지켜나갈 5가지 경영원칙","kind":"company_overview","status":"verified","claims":["삼성전자는 사람과 사회를 생각하는 글로벌 일류기업을 추구하며 인재와 기술을 바탕으로 제품·서비스를 만들고 인류사회에 공헌하는 것을 목표로 제시한다.","삼성전자 임직원 행동규범과 다섯 가지 핵심가치를 경영원칙으로 제시한다."],"html_method":"Codex Web Search에서 공식 페이지 검색 후 open, HTML 추출 텍스트 확인 (2026-11-21).","image_method":"페이지 내 이미지 설명은 사옥·인물 등 장식 이미지로만 확인. 이미지에 포함된 문구를 근거로 사용하지 않았고 별도 시각 검사는 수행하지 않음.","scope":"삼성전자 법인 전체 공식 기업정보 페이지."},
+        {"url":"https://www.samsung.com/sec/about-us/careers/hiring-process-information/kr/","heading":"채용 프로세스 안내; 3급 신입공채; 전형 프로세스","kind":"recruiting","status":"verified","claims":["삼성전자는 열린 채용으로 학력·연령·성별 구분 없이 인재를 선발한다고 안내한다.","신입 공채 전형 단계는 지원서 접수, 직무적합성 평가, 직무적성검사, 종합면접, 채용 건강검진으로 안내한다."],"html_method":"Codex Web Search에서 공식 페이지 검색 및 open으로 HTML 텍스트 확인 (2026-11-21).","image_method":"전형 아이콘 이미지는 검색 추출에 이미지 표기로 나타났으며 단계명은 HTML 텍스트로 읽을 수 있어 이를 전사. 이미지 자체 시각 검사는 하지 않음.","scope":"삼성전자 채용 안내."},
+        {"url":"https://www.samsung-dsrecruit.com/recruits/introduce/index.php","heading":"회사소개","kind":"recruiting","status":"verified","claims":["DS부문 소개는 구성원 개인의 성장·발전이 회사 성장과 혁신으로 이어진다고 설명한다.","이 페이지는 삼성전자 반도체 및 DS부문 채용 사이트이므로 해당 소개는 DS부문 맥락이다."],"html_method":"Codex Web Search 공식 도메인 결과를 open하여 제목과 본문 HTML 추출 텍스트 확인 (2026-11-21).","image_method":"대표 이미지는 장면 설명만 제공되어 문구를 전사하지 않음. 시각 검사는 하지 않음.","scope":"삼성전자 DS부문에 한정. 전사 인재상으로 확대하지 않음."},
+        {"url":"https://www.samsung.com/sec/about-us/careers/kr/","heading":"인재 기준 확인","kind":"talent_criteria","status":"unverified","claims":["확인된 공식 자료만으로 삼성전자 전사에 적용되는 명시적 인재상 또는 인재 기준을 검증하지 못했다.","별도 채용 절차 및 DS부문 맥락의 업무문화 근거는 인재 기준과 구분한다."],"html_method":"공식 채용 페이지 확인. 명시적 전사 인재 기준 문구를 검증하지 못함 (2026-11-21).","image_method":"이미지 문구는 확인하거나 전사하지 않음.","scope":"삼성전자 법인 전체 인재 기준; 미검증 기록."}
+      ]
+    },
+    {
+      "corp_code": "00164779",
+      "corp_code_status": "verified",
+      "legal_name": "에스케이하이닉스 주식회사",
+      "stock_code": "000660",
+      "identity_status": "verified",
+      "homepage_url": "https://www.skhynix.com/company/UI-FR-CP02/",
+      "careers_url": "https://talent.skhynix.com/hub/ko/apply/job",
+      "scope": "SK하이닉스 법인. Talent Hub의 일하는 문화는 SK하이닉스 공식 채용 사이트에 게시된 회사 업무문화로 기록.",
+      "sources": [
+        {"url":"https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00164779","heading":"회사명 SK하이닉스","kind":"identity_verification","status":"verified","claims":["공식 DART 기업개황 페이지가 에스케이하이닉스 법인과 고유번호 00164779을 확인한다."],"html_method":"사용자가 직접 열어 HTTP 200 응답 및 한글 법인명 일치를 확인 (2026-11-21).","image_method":"이미지 확인은 수행하지 않음.","scope":"SK하이닉스 법인명과 DART 고유번호 확인."},
+        {"url":"https://www.skhynix.com/company/UI-FR-CP02/","heading":"AI 시대를 선도하는 메모리 혁신의 창조자; 기업명; 업종; 제품 및 서비스","kind":"company_overview","status":"verified","claims":["회사는 메모리 반도체 기업이며 업종은 반도체 소자 제조와 판매로 기재되어 있다.","DRAM, NAND Flash, MCP 등을 제품·서비스로 제시한다.","AI 시대에 Full Stack AI Memory Creator로 진화한다는 회사 방향을 설명한다."],"html_method":"Codex Web Search 공식 사이트 결과를 open하여 HTML 텍스트와 실제 제목 확인 (2026-11-21).","image_method":"페이지의 제품 이미지는 내용 근거로 사용하지 않았고 별도 시각 검사를 하지 않음.","scope":"SK하이닉스 공식 기업정보."},
+        {"url":"https://talent.skhynix.com/hub/ko/culture/working","heading":"일하는 문화; Bar Raising; AI Driven; One Team; Innovation; Customer Focus; Perfection","kind":"talent_culture","status":"verified","claims":["공식 채용 Talent Hub는 소통으로 연결되고 행복으로 완성되는 SK하이닉스의 일하는 방식을 소개한다.","일하는 방식의 표제는 Bar Raising, AI Driven, One Team, Innovation, Customer Focus, Perfection이다.","본문은 높은 기준, 데이터·AI 활용, 협업·존중, 도전, 고객가치, 세밀한 실행을 각 항목의 설명으로 제시한다."],"html_method":"Codex Web Search에서 공식 채용 사이트를 열고 본문 HTML 텍스트 확인 (2026-11-21).","image_method":"장식·타이틀 이미지 표기가 있으나 핵심 설명은 HTML 텍스트로 제공되어 이미지 문구 전사 불필요. 별도 시각 검사는 하지 않음.","scope":"SK하이닉스 채용 사이트의 회사 일하는 문화. SK그룹 전체 기준으로 해석하지 않음."},
+        {"url":"https://talent.skhynix.com/hub/ko/apply/process","heading":"첫 만남에서 함께하기까지; 서류전형; SKCT; 면접전형","kind":"recruiting","status":"verified","claims":["공식 채용 절차는 서류전형, SKCT, 면접전형, 최종 합격 및 입사로 설명한다.","서류에서 업무역량과 경험, SKCT에서 역량과 가치관, 면접에서 가치관·업무역량·직무 전문성을 종합 검토한다고 안내한다."],"html_method":"Codex Web Search 공식 채용 페이지 결과를 open해 HTML 텍스트 확인 (2026-11-21).","image_method":"HTML 텍스트로 단계와 설명을 확인했으며 이미지 전사는 하지 않음.","scope":"SK하이닉스 채용 절차."},
+        {"url":"https://talent.skhynix.com/hub/ko/culture/working","heading":"인재 기준 확인","kind":"talent_criteria","status":"unverified","claims":["확인된 공식 자료에서 SK하이닉스 법인 전체의 명시적 인재 기준을 별도로 검증하지 못했다.","Talent Hub의 일하는 문화와 채용 절차 근거는 인재 기준과 구분한다."],"html_method":"공식 채용 자료의 업무문화 및 절차를 확인했으나 별도 전사 인재 기준은 검증하지 못함 (2026-11-21).","image_method":"이미지 문구는 확인하거나 전사하지 않음.","scope":"SK하이닉스 법인 전체 인재 기준; 미검증 기록."}
+      ]
+    },
+    {
+      "corp_code": "00164742",
+      "corp_code_status": "verified",
+      "legal_name": "현대자동차 주식회사",
+      "stock_code": "005380",
+      "identity_status": "verified",
+      "homepage_url": "https://www.hyundai.com/kr/ko/info/ideology",
+      "careers_url": "https://talent.hyundai.com/apply/applyProcess.hc",
+      "scope": "현대자동차 법인. 기업이념과 Hyundai Way 공식 채용 페이지 근거만 수록; 현대자동차그룹 페이지는 제외.",
+      "sources": [
+        {"url":"https://dart.fss.or.kr/dsae001/selectPopup.ax?selectKey=00164742","heading":"회사명 현대자동차","kind":"identity_verification","status":"verified","claims":["공식 DART 기업개황 페이지가 현대자동차 법인과 고유번호 00164742를 확인한다."],"html_method":"사용자가 직접 열어 HTTP 200 응답 및 한글 법인명 일치를 확인 (2026-11-21).","image_method":"이미지 확인은 수행하지 않음.","scope":"현대자동차 법인명과 DART 고유번호 확인."},
+        {"url":"https://www.hyundai.com/kr/ko/info/ideology","heading":"기업이념; 경영철학; Vision","kind":"company_overview","status":"verified","claims":["현대자동차 경영철학은 창의적 사고와 끝없는 도전을 통해 새로운 미래를 창조하여 인류 사회의 꿈을 실현한다고 제시한다.","비전은 자동차에서 삶의 동반자로라고 제시한다.","핵심가치 이미지 대체텍스트에는 고객 최우선, 도전적 실행, 소통과 협력, 인재존중, 글로벌 지향이 표시된다."],"html_method":"Codex Web Search 공식 현대닷컴 페이지를 open해 HTML 텍스트 및 이미지 대체텍스트 확인 (2026-11-21).","image_method":"핵심가치는 검색 결과와 HTML의 이미지 대체텍스트로 읽음. 이미지를 별도 시각 검사해 전사한 것은 아님.","scope":"현대자동차 공식 회사소개. 그룹 페이지가 아님."},
+        {"url":"https://talent.hyundai.com/culture/way.hc","heading":"Hyundai Way; Our Vision & People; Core Values & Hyundai Way; 10가지 Hyundai Way","kind":"talent_culture","status":"verified","claims":["Hyundai Way는 시작은 과감하게, 마무리까지 집요하게라는 표어를 제시한다.","현대자동차 채용 페이지는 Hyundai Way를 회사의 일하는 방식으로 설명하고 10가지 행동 방식을 소개한다.","페이지의 예시에는 고객 최우선, 안전과 품질, 집요함, 다양성 포용, 전문성 등이 포함된다."],"html_method":"Codex Web Search 공식 현대자동차 채용 사이트 페이지를 open하여 HTML 텍스트 확인 (2026-11-21).","image_method":"핵심 설명과 항목명이 HTML 텍스트로 제공되어 이미지 문구 전사 불필요. 별도 시각 검사는 하지 않음.","scope":"현대자동차 인재채용 사이트의 Hyundai Way. 그룹 전체 규범으로 확대하지 않음."},
+        {"url":"https://talent.hyundai.com/apply/applyProcess.hc","heading":"신입 채용 프로세스; 경력 채용 프로세스; 인턴 채용 프로세스","kind":"recruiting","status":"verified","claims":["신입 채용 절차는 서류전형, 인적성검사, 직무면접, 종합면접, 채용검진 및 입사로 안내한다.","경력 채용과 인턴 채용은 별도 절차와 자격으로 안내한다."],"html_method":"Codex Web Search에서 공식 채용 페이지를 open하여 HTML 텍스트 확인 (2026-11-21).","image_method":"절차가 HTML 텍스트로 제공되며 이미지 전사는 하지 않음.","scope":"현대자동차 채용 절차."},
+        {"url":"https://talent.hyundai.com/culture/way.hc","heading":"인재 기준 확인","kind":"talent_criteria","status":"unverified","claims":["확인된 공식 자료에서 현대자동차 법인 전체의 명시적 인재 기준을 별도로 검증하지 못했다.","Hyundai Way 업무문화와 채용 절차 근거는 인재 기준과 구분한다."],"html_method":"공식 채용 자료의 업무문화 및 절차를 확인했으나 별도 전사 인재 기준은 검증하지 못함 (2026-11-21).","image_method":"이미지 문구는 확인하거나 전사하지 않음.","scope":"현대자동차 법인 전체 인재 기준; 미검증 기록."}
+      ]
+    }
+  ]
+}
