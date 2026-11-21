@@ -2,7 +2,69 @@
 
 OpenDART의 한 회계연도 정기공시에서 지원동기와 면접 준비에 쓸 근거를 모읍니다. 서버는 공시 근거를 선별해 반환하고, MCP 호스트의 모델이 면접 브리핑을 작성합니다. 별도의 LLM API 키는 필요 없습니다.
 
-## 시작하기
+## 공개 MCP 연결
+
+MCP 클라이언트에서 원격 서버를 추가할 때 전송 방식은 **Streamable HTTP**, 서버 주소는 아래 값을 사용하세요. 공개 공시 조회에 API 키는 필요 없습니다.
+
+```text
+https://dart-for-jobseekers-mcp.yscoder3893.workers.dev/mcp
+```
+
+연결한 뒤 채팅에서 이렇게 요청할 수 있습니다.
+
+> 삼성전자 연구개발 직무 면접을 준비 중이야. 2025년 사업보고서와 2026년 반기보고서로 회사 방향성과 예상 질문을 정리하고, 근거마다 공시 링크를 붙여줘.
+
+서버의 `search_companies`로 회사 고유번호를 찾고, `get_job_seeker_profile`에 그 번호를 전달하면 두 기간의 공시가 반환됩니다. 프롬프트를 지원하는 클라이언트에서는 `job_interview_brief`에 회사명과 지원 직무를 입력할 수 있습니다.
+
+### 공개 Worker에서 삼성전자 조회 테스트
+
+프로젝트 루트에서 아래 명령을 실행하면 공개 MCP에 직접 연결해 회사 검색, 두 기간의 공시 조회, 면접 브리핑 프롬프트를 확인합니다.
+
+```bash
+uv run --locked python - <<'PYTHON'
+import asyncio
+
+from mcp import ClientSession
+from mcp.client.streamable_http import streamable_http_client
+
+URL = "https://dart-for-jobseekers-mcp.yscoder3893.workers.dev/mcp"
+
+
+async def main():
+    async with asyncio.timeout(30):
+        async with streamable_http_client(URL) as (reader, writer, _):
+            async with ClientSession(reader, writer) as session:
+                await session.initialize()
+                matches = await session.call_tool("search_companies", {"query": "삼성전자"})
+                assert not matches.isError, matches.content
+                company = matches.structuredContent["result"][0]
+                assert company["corp_code"] == "00126380"
+                print(f"회사 검색: {company['corp_name']} ({company['corp_code']})")
+
+                result = await session.call_tool("get_job_seeker_profile", {
+                    "corp_code": company["corp_code"], "role": "연구개발",
+                })
+                assert not result.isError, result.content
+                reports = [report for profile in result.structuredContent["profiles"]
+                           for report in profile["periods"]]
+                assert [(r["period_end_month"], r["status"]) for r in reports] == [
+                    ("2025-12", "filed"), ("2026-06", "filed"),
+                ]
+                for report in reports:
+                    print(f"{report['title']} | {report['source']}")
+
+                prompt = await session.get_prompt("job_interview_brief", {
+                    "company": company["corp_name"], "role": "연구개발",
+                })
+                assert prompt.messages
+                print("프롬프트: job_interview_brief")
+
+
+asyncio.run(main())
+PYTHON
+```
+
+## 로컬에서 시작하기
 
 Python 3.11 이상과 `uv`가 필요합니다. **수집 배치 → SQLite → MCP** 순서로 실행합니다. `.env.example`을 `.env`로 복사하고, `OPENDART_API_KEY=` 뒤에 발급받은 인증키를 입력하세요.
 
@@ -47,7 +109,7 @@ MCP 호스트가 표준 입출력으로 서버를 시작한다면 아래 설정�
 }
 ```
 
-## 사용법
+## 로컬 MCP 사용법
 
 - `search_companies(query)`로 회사명이나 종목코드를 검색해 저장된 법인의 OpenDART 8자리 고유번호와 조회 가능한 연도를 확인합니다.
 - `get_job_seeker_profile(corp_code, year, include_optional=false, role="")`로 한 해의 자료를 조회합니다. 예를 들어 삼성전자 2024년 연구개발 직무를 준비한다면 `corp_code`에 `00126380`, `year`에 `2024`, `role`에 `연구개발`을 전달합니다.
