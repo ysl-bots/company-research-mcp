@@ -102,3 +102,17 @@ uv run --env-file .env dart-job-seeker-sync --kospi
 5. `get_job_seeker_profile`에서 `year`를 생략하면 두 기간을 함께 조회합니다. `search_companies`는 D1에 적재된 회사와 연도를 반환합니다.
 
 로컬 Worker 서버는 `worker/`에서 `npx wrangler d1 migrations apply dart-job-seeker --local`을 실행한 뒤 `npm run dev`로 시작할 수 있습니다.
+
+### GitHub Actions 자동 배포
+
+`dev`에 푸시하면 Worker 타입을 검사합니다. `main`에 푸시하면 검사를 통과한 Worker를 원격 D1 바인딩과 함께 배포합니다. D1 스키마 적용과 공시 업로드는 기존 절차로 실행합니다.
+
+Cloudflare 대시보드에서 **Edit Cloudflare Workers** 템플릿으로 배포용 토큰을 만들고, 계정 범위를 이 Worker를 배포하는 계정으로 제한하세요. 계정 ID와 배포 토큰은 아래 명령으로 등록할 수 있습니다. 명령 프롬프트에 값을 붙여 넣으세요.
+
+```bash
+gh secret set CLOUDFLARE_ACCOUNT_ID --repo ysl-bots/dart-for-jobseekers-mcp
+gh secret set CLOUDFLARE_API_TOKEN --repo ysl-bots/dart-for-jobseekers-mcp
+gh workflow run deploy-worker.yml --ref main --repo ysl-bots/dart-for-jobseekers-mcp
+```
+
+두 secret이 준비되기 전에는 타입 검사까지 실행됩니다. 수집용 OpenDART 인증키와 D1 업로드용 토큰은 로컬 환경에 둡니다. [Cloudflare GitHub Actions 가이드](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/)

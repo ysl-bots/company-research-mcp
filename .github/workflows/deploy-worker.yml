@@ -1,0 +1,48 @@
+name: Cloudflare Worker
+
+on:
+  push:
+    branches: [main, dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: worker-${{ github.ref }}
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Worker
+        run: npm run check
+
+      - name: Deploy Worker
+        if: github.ref == 'refs/heads/main'
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [[ -z "$CLOUDFLARE_ACCOUNT_ID" || -z "$CLOUDFLARE_API_TOKEN" ]]; then
+            echo "::warning::Register CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN to enable deployment."
+            exit 0
+          fi
+          npm run deploy

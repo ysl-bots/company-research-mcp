@@ -7,7 +7,7 @@
     {
       "binding": "DB",
       "database_name": "dart-job-seeker",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "a49f1d7b-2555-4c6e-8f06-1d3a0bbbc0ce",
       "migrations_dir": "migrations"
     }
   ]
