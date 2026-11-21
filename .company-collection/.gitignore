@@ -1,0 +1,8 @@
+/discovery/
+/playwright/
+/logs/
+/schema.json
+/*.log
+/discovery.finished
+/playwright-superseded/
+/haiku/

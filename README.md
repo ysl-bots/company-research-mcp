@@ -1,4 +1,4 @@
-# DART 취준생 공시 MCP
+# Company Research MCP
 
 OpenDART의 한 회계연도 정기공시에서 지원동기와 면접 준비에 쓸 근거를 모읍니다. 서버는 공시 근거를 선별해 반환하고, MCP 호스트의 모델이 면접 브리핑을 작성합니다. 별도의 LLM API 키는 필요 없습니다.
 
@@ -7,12 +7,14 @@ OpenDART의 한 회계연도 정기공시에서 지원동기와 면접 준비에
 MCP 클라이언트에서 원격 서버를 추가할 때 전송 방식은 **Streamable HTTP**, 서버 주소는 아래 값을 사용하세요. 공개 공시 조회에 API 키는 필요 없습니다.
 
 ```text
-https://dart-for-jobseekers-mcp.yscoder3893.workers.dev/mcp
+https://company-research-mcp.yscoder3893.workers.dev/mcp
 ```
 
 연결한 뒤 채팅에서 이렇게 요청할 수 있습니다.
 
 > 삼성전자 연구개발 직무 면접을 준비 중이야. 2025년 사업보고서와 2026년 반기보고서로 회사 방향성과 예상 질문을 정리하고, 근거마다 공시 링크를 붙여줘.
+
+`get_company_overview`는 기업 소개와 공식 홈페이지 링크를, `get_talent_profile`은 채용 페이지와 인재·업무문화 근거를 조회합니다. 두 도구에는 회사 고유번호를 입력합니다. 응답은 검토한 근거(`reviewed`), 자동 수집 후보(`candidate`), 미확인(`unverified`) 상태를 표시합니다.
 
 서버의 `search_companies`로 회사 고유번호를 찾고, `get_job_seeker_profile`에 그 번호를 전달하면 두 기간의 공시가 반환됩니다. 프롬프트를 지원하는 클라이언트에서는 `job_interview_brief`에 회사명과 지원 직무를 입력할 수 있습니다.
 
@@ -27,7 +29,7 @@ import asyncio
 from mcp import ClientSession
 from mcp.client.streamable_http import streamable_http_client
 
-URL = "https://dart-for-jobseekers-mcp.yscoder3893.workers.dev/mcp"
+URL = "https://company-research-mcp.yscoder3893.workers.dev/mcp"
 
 
 async def main():
@@ -156,7 +158,10 @@ uv run --env-file .env dart-job-seeker-sync --kospi
    ```bash
    uv run --env-file .env dart-job-seeker-d1 --dry-run
    uv run --env-file .env dart-job-seeker-d1
+   uv run --env-file .env dart-job-seeker-d1 --research-only
    ```
+
+   기업 소개·채용 자료는 두 번째 D1 마이그레이션 적용 후 `--research-only`로 동기화합니다. 수집 체크포인트 반영 절차는 [공식 출처 수집 문서](.company-collection/README.md)를 참고하세요.
 
    업로더는 코스피 배치에서 수집한 대상 기간만 읽습니다. JSON을 D1 API의 SQL 파라미터로 보내며, 같은 저장본을 다시 보내도 기존 행의 내용은 그대로입니다.
 
@@ -172,9 +177,27 @@ uv run --env-file .env dart-job-seeker-sync --kospi
 Cloudflare 대시보드에서 **Edit Cloudflare Workers** 템플릿으로 배포용 토큰을 만들고, 계정 범위를 이 Worker를 배포하는 계정으로 제한하세요. 계정 ID와 배포 토큰은 아래 명령으로 등록할 수 있습니다. 명령 프롬프트에 값을 붙여 넣으세요.
 
 ```bash
-gh secret set CLOUDFLARE_ACCOUNT_ID --repo ysl-bots/dart-for-jobseekers-mcp
-gh secret set CLOUDFLARE_API_TOKEN --repo ysl-bots/dart-for-jobseekers-mcp
-gh workflow run deploy-worker.yml --ref main --repo ysl-bots/dart-for-jobseekers-mcp
+gh secret set CLOUDFLARE_ACCOUNT_ID --repo ysl-bots/company-research-mcp
+gh secret set CLOUDFLARE_API_TOKEN --repo ysl-bots/company-research-mcp
+gh workflow run deploy-worker.yml --ref main --repo ysl-bots/company-research-mcp
 ```
 
 두 secret이 준비되기 전에는 타입 검사까지 실행됩니다. 수집용 OpenDART 인증키와 D1 업로드용 토큰은 로컬 환경에 둡니다. [Cloudflare GitHub Actions 가이드](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/)
+
+## 회사·인재 자료 가져오기
+
+`company_materials.json`은 삼성전자, SK하이닉스, 현대자동차의 공식 자료에서 회사 개요·채용 절차·업무문화 근거를 선별한 버전 관리용 자료입니다. 세 법인과 DART 고유번호는 공식 DART 기업개황 팝업에서 HTTP 200 및 한글 법인명으로 확인했습니다. 각 자료에 확인 날짜, 페이지 제목, HTML 확인 방법, 이미지 처리와 범위를 기록합니다. 명시적 전사 인재 기준을 검증하지 못한 경우 별도 미검증 기록을 두며, 채용 절차와 업무문화 근거를 인재 기준으로 취급하지 않습니다. 사업부 자료는 사업부 한정으로 표시하며 이미지에만 있는 내용을 시각 확인하지 않은 경우 이를 근거에 넣지 않습니다.
+
+인증키 없이 기존 데이터베이스와 별개인 깨끗한 SQLite에도 가져올 수 있습니다. 가져오기는 입력 전체를 먼저 검증하고 단일 트랜잭션으로 저장하며, 같은 내용을 다시 실행해도 중복 행을 만들지 않습니다. 기존 `companies`와 `profiles` 테이블은 변경하지 않습니다.
+
+```bash
+uv run dart-job-seeker-import-materials company_materials.json --db /tmp/company-materials.sqlite3
+uv run python - <<'PYTHON'
+import sqlite3
+con = sqlite3.connect('/tmp/company-materials.sqlite3')
+for code, name in con.execute('SELECT corp_code, corp_name FROM company_materials ORDER BY corp_name'):
+    print(code, name)
+PYTHON
+```
+
+입력 형식이 잘못되면 저장 전에 실패합니다. 회사별 JSON 전체는 `company_materials.payload`에 보존됩니다.

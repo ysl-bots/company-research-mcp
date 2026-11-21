@@ -12,6 +12,7 @@ dependencies = [
 dart-job-seeker-sync = "dart_job_seeker.batch:main"
 dart-job-seeker-d1 = "dart_job_seeker.d1:main"
 dart-job-seeker = "dart_job_seeker.server:main"
+dart-job-seeker-import-materials = "dart_job_seeker.materials:main"
 
 [build-system]
 requires = ["hatchling"]
