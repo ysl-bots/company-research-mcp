@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dart-for-jobseekers-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-21",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dart-job-seeker",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
