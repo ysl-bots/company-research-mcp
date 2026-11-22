@@ -201,3 +201,24 @@ PYTHON
 ```
 
 입력 형식이 잘못되면 저장 전에 실패합니다. 회사별 JSON 전체는 `company_materials.payload`에 보존됩니다.
+## 기업 리서치 자료 파일럿
+
+[검토용 JSON](company_research_pilot.json)은 2026년 11월 21일 기준 삼성전자·SK하이닉스·현대자동차의 보도자료, 기업 블로그, 컨퍼런스, 애널리스트 리포트와 IR 자료를 담습니다. 기업별·유형별 최대 10건이며 IR 홈과 자료실 링크는 별도 집계합니다. `gaps`에는 상한에 못 미친 이유를 기록합니다.
+
+DART 기업 정보가 들어 있는 로컬 SQLite에 아래 명령으로 적재합니다.
+
+```bash
+python -m dart_job_seeker.research_pilot company_research_pilot.json --db dart.sqlite3
+```
+
+적재기는 DART 고유번호와 종목코드를 확인한 뒤 하나의 트랜잭션으로 파일럿 자료와 기업 연결을 교체합니다. `company_research_pilot_items`에는 원문 URL당 한 행을 저장하고, `company_research_pilot_companies`에는 기업별 연결과 귀속 근거를 저장합니다.
+
+## 기업 리서치 자료 조회
+
+`get_company_research_materials`는 DART 고유번호로 보도자료, 기업 블로그, 컨퍼런스, 애널리스트 리포트와 IR 자료를 조회합니다. 수집 기간, 유형별 건수, 원문 출처와 자료 미확보 사유를 함께 반환합니다.
+
+[전체 수집 자료](company_research_batch.json)와 [추가 재조사 결과](company_research_adaptive.json)를 Git에서 검토할 수 있습니다. 운영 D1에 동기화하려면 `0003_company_research_materials.sql` 마이그레이션을 적용한 뒤 아래 명령을 실행합니다.
+
+```bash
+python -m dart_job_seeker.d1 --db dart.sqlite3 --materials-snapshot company_research_batch.json
+```

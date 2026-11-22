@@ -1,0 +1,6 @@
+*
+!.gitignore
+!adaptive/
+!adaptive/search.py
+!adaptive/review.py
+!adaptive/access.py
