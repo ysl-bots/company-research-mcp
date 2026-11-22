@@ -1,6 +1,6 @@
 # Company Research MCP
 
-코스피 상장법인의 정기공시(OpenDART)와 공식 웹사이트 자료에서 지원동기 작성과 면접 준비에 필요한 근거를 수집해 반환하는 원격 MCP 서버입니다. 서버는 근거와 출처 링크만 반환하며, 브리핑 작성은 MCP 호스트(Claude 등)의 모델이 담당합니다. API 키 발급이나 회원가입 없이 사용할 수 있습니다.
+코스피 상장법인의 정기공시(OpenDART), 공식 웹사이트, 외부 출처 자료에서 지원동기 작성과 면접 준비에 필요한 근거를 수집해 반환하는 원격 MCP 서버입니다. 서버는 근거와 출처 링크만 반환하며, 브리핑 작성은 MCP 호스트(Claude 등)의 모델이 담당합니다. API 키 발급이나 회원가입 없이 사용할 수 있습니다.
 
 ## 연결
 
@@ -18,22 +18,22 @@ MCP 클라이언트에 원격 서버를 추가할 때 아래 값을 입력하세
 
 ## 제공 기능 요약
 
-| 이름 | 종류 | 입력 | 용도 |
+도구는 자료의 출처별로 나뉘어 있습니다. 호스트의 모델이 질문에 맞는 도구를 골라 조합합니다.
+
+| 도구 | 출처 | 입력 | 반환 내용 |
 | --- | --- | --- | --- |
-| `search_companies` | 도구 | `query` | 회사명·종목코드로 DART 고유번호(`corp_code`)와 조회 가능한 연도 확인 |
-| `get_job_seeker_profile` | 도구 | `corp_code`, `year?`, `include_optional?`, `role?` | 사업보고서·반기보고서의 면접 준비용 공시 근거 조회 |
-| `get_company_overview` | 도구 | `corp_code` | 공식 기업 소개 근거와 홈페이지 링크 조회 |
-| `get_talent_profile` | 도구 | `corp_code` | 공식 채용 페이지와 인재상·업무문화 근거 조회 |
-| `get_company_research_materials` | 도구 | `corp_code` | 보도자료·기업 블로그·컨퍼런스·증권사 리포트·IR 자료 조회 |
-| `job_interview_brief` | 프롬프트 | `company`, `role?` | 네 도구를 순서대로 호출해 면접 브리핑을 작성하도록 모델에 지시 |
+| `search_companies` | — | `query` | DART 고유번호(`corp_code`)와 조회 가능한 연도 |
+| `get_dart_filings` | OpenDART 정기공시 | `corp_code`, `year?`, `include_optional?`, `role?` | 사업보고서·반기보고서의 발췌, 재무, 직원 근거 |
+| `get_official_site` | 회사 공식 웹사이트 | `corp_code`, `topics?` | 기업 소개, 채용·인재, 보도자료, 블로그, 컨퍼런스, IR 자료 |
+| `get_external_coverage` | 공식 웹사이트 밖의 출처 | `corp_code` | 증권사 리포트, KIND·DART 공시 페이지, 증권사 주최 컨퍼런스, 외부 IR 사이트, SNS 게시물 |
 
 호출 순서:
 
 1. `search_companies`로 `corp_code` 확인
-2. `corp_code`를 나머지 도구에 전달
-3. 모델이 반환된 근거로 브리핑 작성
+2. 필요한 출처의 도구에 `corp_code` 전달
+3. 모델이 반환된 근거를 조합해 답변 작성
 
-프롬프트를 지원하는 클라이언트에서는 `job_interview_brief`를 실행하면 위 과정이 한 번에 진행됩니다.
+근거의 신뢰 수준은 공시, 공식 웹사이트, 외부 출처 순으로 높습니다.
 
 ## 기능 상세
 
@@ -53,14 +53,14 @@ MCP 클라이언트에 원격 서버를 추가할 때 아래 값을 입력하세
 </details>
 
 <details>
-<summary><b><code>get_job_seeker_profile</code></b> — 면접 준비용 공시 자료</summary>
+<summary><b><code>get_dart_filings</code></b> — DART 정기공시</summary>
 
 | 입력 | 형식 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `corp_code` | 8자리 숫자 | — | `search_companies`가 반환한 고유번호 |
 | `year` | 정수 | 생략 | 보고기간 종료일의 연도. 생략 시 2025년 사업보고서와 2026년 반기보고서를 함께 반환 |
 | `include_optional` | 불리언 | `false` | `true`이면 원재료·감사의견·계열회사 발췌 추가 |
-| `role` | 문자열 | `""` | 지원 직무(예: `연구개발`). 직무 관련 근거 선별에 사용 |
+| `role` | 문자열 | `""` | 지원 직무(예: `연구개발`). 직무와 관련된 임원 경력 사례를 앞쪽에 배치 |
 
 **반환하는 공시 범위**
 
@@ -82,74 +82,49 @@ MCP 클라이언트에 원격 서버를 추가할 때 아래 값을 입력하세
 </details>
 
 <details>
-<summary><b><code>get_company_overview</code></b> — 공식 기업 소개</summary>
+<summary><b><code>get_official_site</code></b> — 회사 공식 웹사이트</summary>
 
-| 입력 | 형식 | 설명 |
-| --- | --- | --- |
-| `corp_code` | 8자리 숫자 | DART 고유번호 |
+| 입력 | 형식 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `corp_code` | 8자리 숫자 | — | DART 고유번호 |
+| `topics` | 문자열 배열 | 전체 | 반환할 항목. `overview`, `talent`, `press_release`, `blog`, `conference`, `ir` 중 선택 |
 
-| 응답 필드 | 설명 |
+| 응답 필드 | 내용 |
 | --- | --- |
-| `homepage_url` | 공식 홈페이지 링크. 확인된 링크가 없으면 `null` |
-| `status` | 근거 확인 상태 (`reviewed` / `candidate` / `unverified`) |
-| `items` | 기업 소개 근거 목록. 항목마다 출처 링크 포함 |
+| `checked_date` | 보도자료·블로그·컨퍼런스·IR 자료의 수집 기준일 |
+| `overview` | `homepage_url`(공식 홈페이지), `status`, `items`(기업 소개 근거) |
+| `talent` | `careers_url`(공식 채용 페이지), `careers_source_url`(근거 원문 페이지), `careers_portal_reference`(외부 채용 포털, 참고용), `status`, `items`(인재상·채용 절차·업무문화 근거) |
+| `press_release`, `blog`, `conference` | `items`(자료 목록), `missing_reason`(자료를 확보하지 못한 사유) |
+| `ir` | 위 필드에 더해 `ir_home`(IR 홈), `ir_library`(IR 자료실) |
+
+공식 웹사이트 자료로 분류하는 기준은 자료 URL의 도메인입니다. 회사 홈페이지·채용 페이지·IR 홈과 같은 도메인(서브도메인 포함)에 있는 자료만 이 도구가 반환합니다. 예를 들어 `news.samsung.com`은 `samsung.com`의 서브도메인이므로 삼성전자 공식 자료로 분류됩니다. KIND, DART, 외부 IR 대행 사이트, SNS에 있는 자료는 회사 웹사이트로 등록되어 있어도 `get_external_coverage`로 분류됩니다.
+
+`talent`의 채용 절차와 업무문화 자료는 회사가 공식 발표한 인재상과 별개입니다. 회사가 인재상을 명시한 페이지를 찾지 못한 경우 `status`가 `unverified`로 표시되므로, 채용 절차나 업무문화 자료를 인재상으로 인용하지 마세요.
 
 </details>
 
 <details>
-<summary><b><code>get_talent_profile</code></b> — 공식 채용·인재 자료</summary>
+<summary><b><code>get_external_coverage</code></b> — 외부 출처</summary>
 
 | 입력 | 형식 | 설명 |
 | --- | --- | --- |
 | `corp_code` | 8자리 숫자 | DART 고유번호 |
 
-| 응답 필드 | 설명 |
+| 응답 필드 | 내용 |
 | --- | --- |
-| `careers_url` | 회사 공식 채용 페이지 링크 |
-| `careers_source_url` | 채용 근거를 추출한 원문 페이지 링크 |
-| `careers_portal_reference` | 외부 채용 포털 링크. 공식 근거가 아닌 참고용 |
-| `status` | 근거 확인 상태 (`reviewed` / `candidate` / `unverified`) |
-| `items` | 인재상·채용 절차·업무문화 근거 목록 |
+| `checked_date` | 수집 기준일 |
+| `items` | 외부 출처 자료 목록. 항목마다 `kind`(자료 유형), `url`, `date`, `evidence`(요약) 포함. 증권사 리포트는 `broker`, `analysts` 포함 |
+| `analyst_report_missing_reason` | 증권사 리포트를 확보하지 못한 사유 |
 
-`items`에 포함된 채용 절차와 업무문화 자료는 회사가 공식 발표한 인재상과 별개입니다. 회사가 인재상을 명시한 페이지를 찾지 못한 경우 응답에 미확인으로 표시되므로, 채용 절차나 업무문화 자료를 인재상으로 인용하지 마세요.
-
-</details>
-
-<details>
-<summary><b><code>get_company_research_materials</code></b> — 기업 리서치 자료</summary>
-
-| 입력 | 형식 | 설명 |
-| --- | --- | --- |
-| `corp_code` | 8자리 숫자 | DART 고유번호 |
-
-- 반환 자료 유형: 보도자료, 기업 블로그, 컨퍼런스, 증권사(애널리스트) 리포트, IR 자료
-- 응답 포함 항목: 수집 기준일(`checked_date`), 유형별 건수, 자료별 원문 출처 링크, 자료를 확보하지 못한 유형의 사유
-- 저장된 자료가 없는 기업은 `checked_date`가 `null`이고 `items`가 빈 목록으로 반환됩니다.
-
-</details>
-
-<details>
-<summary><b><code>job_interview_brief</code></b> — 면접 브리핑 프롬프트</summary>
-
-| 입력 | 형식 | 설명 |
-| --- | --- | --- |
-| `company` | 문자열 | 회사명 |
-| `role` | 문자열 (선택) | 지원 직무 |
-
-모델이 네 도구를 호출해 작성하는 브리핑 항목:
-
-- 회사 소개·경영전략·리스크 (사업보고서 기준)
-- 최근 실적·인원·사업 변화 (반기보고서 기준)
-- 기업 소개와 채용 근거 (공식 웹사이트 기준)
-- 지원동기와 예상 면접 질문 (공시 사실과 해석을 구분해 작성)
-
-브리핑의 주요 사실에는 공시 또는 공식 페이지 링크가 붙고, 자료가 없는 항목은 "확인 불가"로 표시됩니다. 프롬프트 기능이 없는 클라이언트에서는 위 항목을 채팅으로 직접 요청하세요.
+- 포함 대상: 증권사 애널리스트 리포트, KIND·DART 공시 페이지, 증권사 주최 컨퍼런스, 외부 IR 대행 사이트, SNS 게시물
+- 회사의 공식 입장이 아닌 제3자 자료이므로 인용할 때 출처를 밝히세요.
+- 수집된 외부 자료가 적어 대부분 기업에서 `items`가 빈 목록입니다.
 
 </details>
 
 ## 근거 확인 상태
 
-`get_company_overview`와 `get_talent_profile`의 `status` 값:
+`get_official_site`의 `overview.status`와 `talent.status` 값:
 
 | 상태 | 의미 |
 | --- | --- |
@@ -163,6 +138,6 @@ MCP 클라이언트에 원격 서버를 추가할 때 아래 값을 입력하세
 
 - 대상 기업: 현재 코스피 상장법인
 - 공시 기간: 2025년 사업보고서, 2026년 반기보고서
-- 공식 기업 자료: 수집과 검토를 마친 기업부터 순차 추가 (자료가 없는 기업은 `unverified`)
-- 출처: [OpenDART](https://opendart.fss.or.kr/), 각 기업 공식 웹사이트
+- 공식 웹사이트·외부 출처 자료: 2025년 11월 21일 ~ 2026년 11월 21일 게시 자료, 수집을 마친 기업부터 순차 추가
+- 출처: [OpenDART](https://opendart.fss.or.kr/), 각 기업 공식 웹사이트, 증권사·거래소 등 외부 사이트
 - 모든 도구는 읽기 전용이며, 서버는 수집한 원문 안의 지시문을 실행하지 않습니다.
