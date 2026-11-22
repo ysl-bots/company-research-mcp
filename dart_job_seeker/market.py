@@ -10,12 +10,18 @@ from .profile import collect_profile
 from .storage import initialize, load_profile, save_profile
 
 
-KIND_URL = "https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&marketType=stockMkt"
+KIND_URL = "https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&marketType={}"
+# 시장 코드: (KIND marketType, KIND 시장구분 표기, 출력용 이름)
+MARKETS = {
+    "KOSPI": ("stockMkt", "유가", "코스피"),
+    "KOSDAQ": ("kosdaqMkt", "코스닥", "코스닥"),
+}
 
 
 class ListingTable(HTMLParser):
-    def __init__(self):
+    def __init__(self, label: str):
         super().__init__()
+        self.label = label
         self.stocks = {}
         self.row = None
         self.cell = None
@@ -37,33 +43,35 @@ class ListingTable(HTMLParser):
         elif tag == "tr" and self.row is not None:
             if len(self.row) >= 7:
                 name, market, code, _, _, _, closing = self.row[:7]
-                if market == "유가" and re.fullmatch(r"[A-Z0-9]{6}", code):
+                if market == self.label and re.fullmatch(r"[A-Z0-9]{6}", code):
                     self.stocks[code] = (name, closing)
             self.row = None
 
 
-def listed_companies():
-    with urlopen(KIND_URL, timeout=25) as response:
+def listed_companies(market: str):
+    market_type, label, name = MARKETS[market]
+    with urlopen(KIND_URL.format(market_type), timeout=25) as response:
         data = response.read(10 * 1024 * 1024 + 1)
     if len(data) > 10 * 1024 * 1024:
         raise ValueError("KRX 상장법인 목록이 처리 가능한 크기를 초과했습니다.")
-    table = ListingTable()
+    table = ListingTable(label)
     table.feed(data.decode("cp949"))
     if not table.stocks:
-        raise ValueError("KRX 코스피 상장법인 목록을 읽을 수 없습니다.")
+        raise ValueError(f"KRX {name} 상장법인 목록을 읽을 수 없습니다.")
     return table.stocks
 
 
 TARGETS = ((2025, "FY"), (2026, "H1"))
 
 
-def collect_market(dart, path, workers: int, *, retry_partial: bool = False, refresh: bool = False) -> int:
-    listed = listed_companies()
+def collect_market(dart, path, workers: int, market: str, *, retry_partial: bool = False,
+                   refresh: bool = False) -> int:
+    listed = listed_companies(market)
     directory = {row["stock_code"]: row for row in dart.companies() if row["stock_code"] in listed}
     initialize(path)
     missing_codes = sorted(set(listed) - directory.keys())
     skipped = sorted(code for code in listed if not re.fullmatch(r"(?:0?[1-9]|1[0-2])월", listed[code][1]))
-    print(f"KRX 코스피 {len(listed)}개사. DART 매핑 누락 {len(missing_codes)}개, 결산월 미확인 {len(skipped)}개.", flush=True)
+    print(f"KRX {MARKETS[market][2]} {len(listed)}개사. DART 매핑 누락 {len(missing_codes)}개, 결산월 미확인 {len(skipped)}개.", flush=True)
     if missing_codes:
         print(f"DART 매핑 누락: {', '.join(missing_codes)}", flush=True)
     if skipped:
@@ -76,7 +84,7 @@ def collect_market(dart, path, workers: int, *, retry_partial: bool = False, ref
         pending = []
         for year, period in TARGETS:
             existing = load_profile(path, code, year)
-            if not refresh and existing and existing["company"].get("market") == "KOSPI":
+            if not refresh and existing and existing["company"].get("market") == market:
                 report = next((row for row in existing["periods"] if row["period"] == period), {})
                 partial = "error" in report.get("availability", {}).values()
                 if report and not (retry_partial and partial):
@@ -96,7 +104,7 @@ def collect_market(dart, path, workers: int, *, retry_partial: bool = False, ref
         for year, period in pending:
             profile = collect_profile(dart, code, year, only={period}, rows=rows, closing_month=closing_month)
             profile["company"].update(
-                name=profile["company"]["name"] or company["corp_name"], stock_code=company["stock_code"], market="KOSPI",
+                name=profile["company"]["name"] or company["corp_name"], stock_code=company["stock_code"], market=market,
             )
             report = profile["periods"][0]
             if report["status"] == "filing_unavailable":

@@ -11,7 +11,7 @@ from time import sleep
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from .kospi import TARGETS
+from .market import MARKETS, TARGETS
 from .storage import connect, database_path
 
 
@@ -48,7 +48,7 @@ def updates(path: Path):
         """, tuple(targets))
         for row in rows:
             profile = json.loads(row["payload"])
-            if profile["company"].get("market") != "KOSPI":
+            if profile["company"].get("market") not in MARKETS:
                 continue
             period = next((r for r in profile["periods"] if r["period"] == targets[row["fiscal_year"]]), None)
             if period is None:
@@ -92,7 +92,7 @@ def send_updates(endpoint: str, token: str, batch: list[dict]):
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="로컬 코스피 공시 또는 기업 조사 자료를 D1으로 동기화합니다.")
+    parser = argparse.ArgumentParser(description="로컬 코스피·코스닥 공시 또는 기업 조사 자료를 D1으로 동기화합니다.")
     parser.add_argument("--db", type=Path, default=database_path())
     parser.add_argument("--dry-run", action="store_true", help="D1에 접속하지 않고 동기화 대상과 크기를 확인")
     modes = parser.add_mutually_exclusive_group()

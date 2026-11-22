@@ -7,7 +7,7 @@ import sqlite3
 import sys
 
 from .dart import Dart, DartError, DartQuotaError
-from .kospi import collect_market
+from .market import MARKETS, collect_market
 from .profile import collect_profile
 from .storage import database_path, initialize, save_profile
 
@@ -54,19 +54,19 @@ def refresh(dart: Dart, path: Path, companies: list[str], years: list[int]) -> i
 def main() -> int:
     parser = argparse.ArgumentParser(description="OpenDART 정기공시를 수집해 SQLite에 저장합니다.")
     target = parser.add_mutually_exclusive_group(required=True)
-    target.add_argument("--kospi", action="store_true", help="코스피 2025 FY 및 2026 H1 수집")
+    target.add_argument("--market", type=str.upper, choices=MARKETS, help="KOSPI 또는 KOSDAQ 전체의 2025 FY 및 2026 H1 수집")
     target.add_argument("--corp-code", action="append", help="8자리 고유번호. 반복 지정 가능")
     parser.add_argument("--year", action="append", type=int, help="회계연도. 반복 지정 가능")
     parser.add_argument("--db", type=Path, default=database_path(), help="SQLite 파일 경로")
     parser.add_argument("--workers", type=int, default=6, choices=range(1, 13))
     parser.add_argument("--request-limit", type=int, default=12_000)
-    parser.add_argument("--refresh", action="store_true", help="저장된 코스피 공시도 다시 조회")
-    parser.add_argument("--retry-partial", action="store_true", help="오류가 남은 코스피 공시를 다시 수집")
+    parser.add_argument("--refresh", action="store_true", help="--market으로 저장된 공시도 다시 조회")
+    parser.add_argument("--retry-partial", action="store_true", help="--market으로 수집 중 오류가 남은 공시를 다시 수집")
     args = parser.parse_args()
-    if args.kospi and args.year or not args.kospi and not args.year:
+    if args.market and args.year or not args.market and not args.year:
         parser.error("--year는 --corp-code와 함께 입력하세요.")
-    if not args.kospi and (args.refresh or args.retry_partial):
-        parser.error("--refresh와 --retry-partial은 --kospi에 사용하세요.")
+    if not args.market and (args.refresh or args.retry_partial):
+        parser.error("--refresh와 --retry-partial은 --market과 함께 사용하세요.")
     if args.request_limit < 1:
         parser.error("--request-limit은 양수여야 합니다.")
     if any(not re.fullmatch(r"[0-9]{8}", code) for code in args.corp_code or []):
@@ -78,8 +78,8 @@ def main() -> int:
         parser.error("OPENDART_API_KEY 환경변수에 OpenDART 인증키를 설정하세요.")
     try:
         dart = Dart(key, request_limit=args.request_limit)
-        if args.kospi:
-            return collect_market(dart, args.db.expanduser(), args.workers,
+        if args.market:
+            return collect_market(dart, args.db.expanduser(), args.workers, args.market,
                                   retry_partial=args.retry_partial, refresh=args.refresh)
         return refresh(dart, args.db.expanduser(), list(dict.fromkeys(args.corp_code)),
                        list(dict.fromkeys(args.year)))

@@ -84,7 +84,7 @@ function createServer(db: D1Database) {
 
   server.registerTool("search_companies", {
     title: "회사 검색",
-    description: "회사명·종목코드·DART 고유번호로 저장된 코스피 법인과 공시 연도를 찾습니다.",
+    description: "회사명·종목코드·DART 고유번호로 저장된 코스피·코스닥 법인과 공시 연도를 찾습니다.",
     inputSchema: { query: z.string().trim().min(1).max(100) },
     annotations,
   }, async ({ query }) => {
