@@ -5,13 +5,11 @@ description = "OpenDART filing evidence for Korean job seekers"
 requires-python = ">=3.11"
 dependencies = [
     "lxml>=5,<7",
-    "mcp>=1.28,<2",
 ]
 
 [project.scripts]
 dart-job-seeker-sync = "dart_job_seeker.batch:main"
 dart-job-seeker-d1 = "dart_job_seeker.d1:main"
-dart-job-seeker = "dart_job_seeker.server:main"
 dart-job-seeker-import-materials = "dart_job_seeker.materials:main"
 
 [build-system]
