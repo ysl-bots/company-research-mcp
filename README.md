@@ -24,12 +24,13 @@ MCP 클라이언트에 원격 서버를 추가할 때 아래 값을 입력하세
 | `get_job_seeker_profile` | 도구 | `corp_code`, `year?`, `include_optional?`, `role?` | 사업보고서·반기보고서의 면접 준비용 공시 근거 조회 |
 | `get_company_overview` | 도구 | `corp_code` | 공식 기업 소개 근거와 홈페이지 링크 조회 |
 | `get_talent_profile` | 도구 | `corp_code` | 공식 채용 페이지와 인재상·업무문화 근거 조회 |
+| `get_company_research_materials` | 도구 | `corp_code` | 보도자료·기업 블로그·컨퍼런스·증권사 리포트·IR 자료 조회 |
 | `job_interview_brief` | 프롬프트 | `company`, `role?` | 네 도구를 순서대로 호출해 면접 브리핑을 작성하도록 모델에 지시 |
 
 호출 순서:
 
 1. `search_companies`로 `corp_code` 확인
-2. `corp_code`를 나머지 세 도구에 전달
+2. `corp_code`를 나머지 도구에 전달
 3. 모델이 반환된 근거로 브리핑 작성
 
 프롬프트를 지원하는 클라이언트에서는 `job_interview_brief`를 실행하면 위 과정이 한 번에 진행됩니다.
@@ -111,6 +112,19 @@ MCP 클라이언트에 원격 서버를 추가할 때 아래 값을 입력하세
 | `items` | 인재상·채용 절차·업무문화 근거 목록 |
 
 `items`에 포함된 채용 절차와 업무문화 자료는 회사가 공식 발표한 인재상과 별개입니다. 회사가 인재상을 명시한 페이지를 찾지 못한 경우 응답에 미확인으로 표시되므로, 채용 절차나 업무문화 자료를 인재상으로 인용하지 마세요.
+
+</details>
+
+<details>
+<summary><b><code>get_company_research_materials</code></b> — 기업 리서치 자료</summary>
+
+| 입력 | 형식 | 설명 |
+| --- | --- | --- |
+| `corp_code` | 8자리 숫자 | DART 고유번호 |
+
+- 반환 자료 유형: 보도자료, 기업 블로그, 컨퍼런스, 증권사(애널리스트) 리포트, IR 자료
+- 응답 포함 항목: 수집 기준일(`checked_date`), 유형별 건수, 자료별 원문 출처 링크, 자료를 확보하지 못한 유형의 사유
+- 저장된 자료가 없는 기업은 `checked_date`가 `null`이고 `items`가 빈 목록으로 반환됩니다.
 
 </details>
 
