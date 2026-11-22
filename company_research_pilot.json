@@ -1,0 +1,1003 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-11-21",
+  "start_date": "2025-11-21",
+  "discovery": {
+    "press_release": [
+      "https://www.hyundaimotorgroup.com/ko/news/newsMain",
+      "https://news.samsung.com/global/category/press-release",
+      "https://news.samsung.com/global/category/corporate/press-release/page/2",
+      "https://news.skhynix.com/en/feed/",
+      "https://news.skhynix.com/en/category/press/",
+      "https://www.hyundai.com/worldwide/en/newsroom"
+    ],
+    "blog": [
+      "https://semiconductor.samsung.com/kr/news-events/tech-blog/",
+      "https://news.skhynix.com/en/category/tech-and-ai/",
+      "https://www.hyundaimotorgroup.com/ko/main/mainJournal"
+    ],
+    "conference": [
+      "https://semiconductor.samsung.com/news-events/events/",
+      "https://www.opencompute.org/events/ocp-summit/2026-ocp-global-summit/",
+      "https://laautoshow.com/press-releases/"
+    ],
+    "analyst_report": [
+      "https://www.corejang.co.kr/reports",
+      "https://file.hanaw.com/download/research/FileServer/WEB/industry/industry/2026/11/11/Semi_Indepth_261112_F.pdf"
+    ],
+    "ir": [
+      "https://www.samsung.com/global/ir/financial-information/earnings-release/",
+      "https://www.hyundai.com/worldwide/en/company/ir/ir-events",
+      "https://www.skhynix.com/ir/UI-FR-IR12_T1"
+    ]
+  },
+  "collection_notes": [
+    "2025-11-21과 2026-11-21을 포함한다. 세션의 정확한 날짜를 확인하지 못한 경우 행사 시작일과 종료일을 기록했다.",
+    "공식 목록과 SK하이닉스 RSS를 확인하고, 삼성반도체 기술 블로그와 개별 IR 링크는 Playwright로 확인했다.",
+    "원문 URL은 HTTP 200을 확인했다. OCP 주최 측 일정은 Web Search에서 열렸고 Playwright HTTP 요청에서는 403을 반환했다.",
+    "애널리스트 리포트 포털은 탐색에 사용했다. 자료 항목은 발행사 PDF로 연결한다."
+  ],
+  "items": [
+    {
+      "kind": "press_release",
+      "title": "Samsung Electronics Announces New Leadership",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-new-leadership-5",
+      "companies": {
+        "00126380": "삼성전자가 메모리사업부와 MX사업부의 신규 책임자를 발표했다."
+      },
+      "date": "2026-11-20"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung’s Latest Products Recognized by Consumer Technology Association Ahead of CES 2027",
+      "url": "https://news.samsung.com/global/samsungs-latest-products-recognized-by-consumer-technology-association-ahead-of-ces-2027",
+      "companies": {
+        "00126380": "CTA의 CES 2027 혁신상을 받은 삼성전자 제품을 소개한다."
+      },
+      "date": "2026-11-15"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung Announces December Release for Intelligent Eyewear, Bringing a Smarter Way To See the World",
+      "url": "https://news.samsung.com/global/samsung-announces-december-release-for-intelligent-eyewear-bringing-a-smarter-way-to-see-the-world",
+      "companies": {
+        "00126380": "삼성의 지능형 안경 출시 일정과 제품 기능을 설명한다."
+      },
+      "date": "2026-11-12"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung and IOC Back Young Innovators at Africa’s First Olympic Games",
+      "url": "https://news.samsung.com/global/samsung-and-ioc-back-young-innovators-at-africas-first-olympic-games",
+      "companies": {
+        "00126380": "삼성전자와 IOC의 청년 혁신 프로그램 협업을 발표했다."
+      },
+      "date": "2026-11-11"
+    },
+    {
+      "kind": "press_release",
+      "title": "Upgraded Sleep Apnea Feature Now Available on Galaxy Ring Following Regulatory Approvals From US FDA and Korea MFDS",
+      "url": "https://news.samsung.com/global/upgraded-sleep-apnea-feature-now-available-on-galaxy-ring-following-regulatory-approvals-from-us-fda-and-korea-mfds",
+      "companies": {
+        "00126380": "삼성전자가 규제 승인에 따른 갤럭시 링 수면무호흡 기능 제공을 알렸다."
+      },
+      "date": "2026-11-03"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung Electronics Announces Third Quarter 2026 Results",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-third-quarter-2026-results",
+      "companies": {
+        "00126380": "삼성전자가 3분기 부문별 실적과 제품 전망을 발표했다."
+      },
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung Ranks No. 5 in Interbrand’s ‘Best Global Brands 2026’ for Seventh Consecutive Year",
+      "url": "https://news.samsung.com/global/samsung-ranks-no-5-in-interbrands-best-global-brands-2026-for-seventh-consecutive-year",
+      "companies": {
+        "00126380": "삼성전자 브랜드 평가와 경영 활동을 소개한다."
+      },
+      "date": "2026-10-28"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung Art Store Unveils Curated Collection From Art Basel Paris 2026",
+      "url": "https://news.samsung.com/global/samsung-art-store-unveils-curated-collection-from-art-basel-paris-2026",
+      "companies": {
+        "00126380": "삼성 아트 스토어의 아트 바젤 파리 협업 컬렉션을 공개했다."
+      },
+      "date": "2026-10-20"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung Hosts Silicon Valley Future Wireless Summit 2026",
+      "url": "https://news.samsung.com/global/samsung-hosts-silicon-valley-future-wireless-summit-2026",
+      "companies": {
+        "00126380": "삼성전자가 글로벌 통신 업계와 6G 및 AI 네트워크 협력 행사를 개최했다."
+      },
+      "date": "2026-10-15"
+    },
+    {
+      "kind": "press_release",
+      "title": "Samsung Presents ‘Design Is an Act of Love’ at Seoul Design Week 2026",
+      "url": "https://news.samsung.com/global/samsung-presents-design-is-an-act-of-love-at-seoul-design-week-2026",
+      "companies": {
+        "00126380": "삼성전자가 POLI.design과 협업한 OLED TV 전시를 소개했다."
+      },
+      "date": "2026-10-15"
+    },
+    {
+      "kind": "blog",
+      "title": "Agentic AI 시대의 시스템 메모리 재설계, SOCAMM2",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/rethinking-system-memory-for-the-agentic-ai-era-with-socamm2/",
+      "companies": {
+        "00126380": "삼성반도체가 에이전틱 AI 서버를 위한 SOCAMM2의 메모리 설계를 설명한다."
+      },
+      "date": "2026-11-19"
+    },
+    {
+      "kind": "blog",
+      "title": "Defect Agent: AI로 진화하는 반도체 결함 제어",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/defect-agent-advancing-semiconductor-defect-control-through-ai/",
+      "companies": {
+        "00126380": "삼성반도체가 AI를 반도체 공정의 결함 제어에 적용하는 Defect Agent를 소개한다."
+      },
+      "date": "2026-11-16"
+    },
+    {
+      "kind": "blog",
+      "title": "삼성전자, NVIDIA AI Day Seoul 2026에서 AI 기반 반도체 엔지니어링 협업 성과 소개",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/samsung-showcases-ai-driven-semiconductor-engineering-research-and-collaboration-with-nvidia-at-nvidia-ai-day-seoul-2026/",
+      "companies": {
+        "00126380": "삼성전자가 NVIDIA와의 AI 기반 반도체 엔지니어링 협업 성과를 소개한다."
+      },
+      "date": "2026-11-10"
+    },
+    {
+      "kind": "blog",
+      "title": "안전한 보안 환경에서 더 빠르게: Code Mate가 이끄는 반도체 소프트웨어 개발의 변화",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/faster-and-secure-how-code-mate-is-transforming-semiconductor-software-development/",
+      "companies": {
+        "00126380": "삼성반도체가 내부 반도체 소프트웨어 개발에 적용한 Code Mate를 소개한다."
+      },
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "blog",
+      "title": "2편: Data Movement 시대를 여는 차세대 메모리 zHBM",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/part-2-zhbm-next-generation-memory-for-the-data-movement-era/",
+      "companies": {
+        "00126380": "삼성반도체가 데이터 이동 효율을 높이기 위한 차세대 zHBM을 설명한다."
+      },
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "blog",
+      "title": "1편: 인공지능의 발전과 AI Chip, 이를 뒷받침하는 HBM",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/part-1-the-evolution-of-ai-and-ai-chips-and-the-hbm-that-powers-them/",
+      "companies": {
+        "00126380": "삼성반도체가 AI 가속기와 HBM의 관계를 설명한다."
+      },
+      "date": "2026-10-28"
+    },
+    {
+      "kind": "blog",
+      "title": "OCP Global Summit 2026: AI 시대를 향한 혁신의 확장",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/ocp-global-summit-2026-scaling-innovation-for-the-ai-era/",
+      "companies": {
+        "00126380": "삼성전자가 OCP에서 전시한 메모리·스토리지·파운드리 기술을 설명한다."
+      },
+      "date": "2026-10-22"
+    },
+    {
+      "kind": "blog",
+      "title": "맞춤형 Foundry 로직-메모리 통합으로 고성능 컴퓨팅의 미래를 앞당기다",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/advancing-high-performance-compute-with-customized-foundry-logic-memory-integration/",
+      "companies": {
+        "00126380": "삼성 파운드리가 고성능 컴퓨팅을 위한 로직과 메모리 통합을 설명한다."
+      },
+      "date": "2026-10-12"
+    },
+    {
+      "kind": "blog",
+      "title": "미세 픽셀의 한계를 다시 설계하다, DeepPix 1편",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/redesigning-the-limits-of-small-pixels-deeppix-part-1/",
+      "companies": {
+        "00126380": "삼성반도체가 소형 이미지 센서 픽셀의 설계 과제를 설명한다."
+      },
+      "date": "2026-10-07"
+    },
+    {
+      "kind": "blog",
+      "title": "다가올 에이전틱 AI 시대, 변화와 그 영향은? 올해로 개최 10년째 맞은 ‘삼성 AI 포럼’",
+      "url": "https://semiconductor.samsung.com/kr/news-events/tech-blog/entering-the-agentic-ai-era-what-changes-will-it-bring-samsung-ai-forum-celebrates-its-10th-anniversary/",
+      "companies": {
+        "00126380": "삼성전자가 삼성 AI 포럼의 에이전틱 AI 연구 주제를 소개한다."
+      },
+      "date": "2026-10-01"
+    },
+    {
+      "kind": "conference",
+      "title": "Scaling Innovation for the AI Era: Keep Your Compute Running at Full Throttle with Highly Scalable Memory",
+      "url": "https://semiconductor.samsung.com/events/ocp-2026/",
+      "companies": {
+        "00126380": "삼성전자 메모리사업부의 심호준이 스케일러블 메모리 전략을 소개했다."
+      },
+      "event": "OCP Global Summit 2026",
+      "session": "Scaling Innovation for the AI Era: Keep Your Compute Running at Full Throttle with Highly Scalable Memory",
+      "event_end_date": "2026-10-15",
+      "assets": [
+        {
+          "type": "organizer",
+          "url": "https://www.opencompute.org/events/ocp-summit/2026-ocp-global-summit/"
+        },
+        {
+          "type": "video",
+          "url": "https://www.youtube.com/watch?v=dwSIrjBBenQ"
+        }
+      ],
+      "related_press": [],
+      "date": "2026-10-12"
+    },
+    {
+      "kind": "conference",
+      "title": "3D Innovations in Memory & Storage Architecture",
+      "url": "https://semiconductor.samsung.com/events/fms-2026/",
+      "companies": {
+        "00126380": "삼성전자 메모리사업부 이진엽이 zNAND-O 등 3D 메모리 기술에 관해 발표했다."
+      },
+      "event": "FMS 2026",
+      "session": "3D Innovations in Memory & Storage Architecture",
+      "event_end_date": "2026-08-06",
+      "assets": [
+        {
+          "type": "video",
+          "url": "https://www.youtube.com/watch?v=t9I_Z6W1lI0"
+        }
+      ],
+      "related_press": [],
+      "date": "2026-08-04"
+    },
+    {
+      "kind": "analyst_report",
+      "title": "반도체: AI 수요 대비 부족한 공급 능력",
+      "url": "https://file.hanaw.com/download/research/FileServer/WEB/industry/industry/2026/11/11/Semi_Indepth_261112_F.pdf",
+      "companies": {
+        "00126380": "46쪽부터 삼성전자 독립 기업분석과 부문 실적 전망을 제공한다.",
+        "00164779": "53쪽부터 SK하이닉스 독립 기업분석을 제공한다."
+      },
+      "broker": "하나증권",
+      "analysts": [
+        "김록호"
+      ],
+      "report_type": "industry",
+      "date": "2026-11-12"
+    },
+    {
+      "kind": "analyst_report",
+      "title": "삼성전자: AI Agent 시대, 여전히 좁은 메모리 공급의 문",
+      "url": "https://www.samsungpop.com/common.do?cmd=down&contentType=application%2Fpdf&fileName=2010%2F2026060208223865K_02_03.pdf&inlineYn=Y&saveKey=research.pdf",
+      "companies": {
+        "00126380": "삼성전자 DRAM 공급과 파운드리·스마트폰 사업 가치를 분석한다."
+      },
+      "broker": "삼성증권",
+      "analysts": [
+        "이종욱"
+      ],
+      "report_type": "stock",
+      "date": "2026-06-02"
+    },
+    {
+      "kind": "ir",
+      "title": "3Q 2026 Results",
+      "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2026_3Q_conference_eng.pdf",
+      "companies": {
+        "00126380": "삼성전자 공식 실적 자료실에 게시된 분기 실적 발표 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "ir",
+      "title": "2Q 2026 Results",
+      "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2026_2Q_conference_eng.pdf",
+      "companies": {
+        "00126380": "삼성전자 공식 실적 자료실에 게시된 분기 실적 발표 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-07-30"
+    },
+    {
+      "kind": "ir",
+      "title": "1Q 2026 Results",
+      "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2026_1Q_conference_eng.pdf",
+      "companies": {
+        "00126380": "삼성전자 공식 실적 자료실에 게시된 분기 실적 발표 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-04-30"
+    },
+    {
+      "kind": "ir",
+      "title": "4Q 2025 Results",
+      "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_conference_eng.pdf",
+      "companies": {
+        "00126380": "삼성전자 공식 실적 자료실에 게시된 분기 실적 발표 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-01-29"
+    },
+    {
+      "kind": "ir_home",
+      "title": "Samsung Electronics Investor Relations",
+      "url": "https://www.samsung.com/global/ir/",
+      "companies": {
+        "00126380": "삼성전자 공식 투자자 정보."
+      }
+    },
+    {
+      "kind": "ir_library",
+      "title": "Earnings Releases",
+      "url": "https://www.samsung.com/global/ir/financial-information/earnings-release/",
+      "companies": {
+        "00126380": "기업 공식 실적 발표 및 IR 자료 목록."
+      }
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Unveils The all-new ELANTRA, Bringing Dynamic Confidence to the Compact Sedan",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001306",
+      "companies": {
+        "00164742": "현대자동차가 LA 오토쇼에서 신형 엘란트라를 공개했다."
+      },
+      "date": "2026-11-20"
+    },
+    {
+      "kind": "press_release",
+      "title": "현대차-한국어촌어항공단, 'Co:어촌' 프로젝트 업무협약 체결",
+      "url": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-company-korea-fishing-village-co-fishing-villages-mou",
+      "companies": {
+        "00164742": "현대자동차가 ST1 기반 어촌 모빌리티 실증을 위한 공단과의 협약을 발표했다."
+      },
+      "date": "2026-11-18"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai IONIQ 3 Named European Car of the Year 2027 Finalist",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001301",
+      "companies": {
+        "00164742": "현대자동차의 아이오닉 3가 유럽 올해의 차 최종 후보에 올랐다."
+      },
+      "date": "2026-10-30"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Announces 2026 Q3 Business Results",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001298",
+      "companies": {
+        "00164742": "현대자동차가 3분기 연결 실적과 연간 가이던스 변경을 발표했다."
+      },
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Reports Q3 and YTD 2026 Global Retail Sales Results",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001299",
+      "companies": {
+        "00164742": "현대자동차가 지역별 글로벌 소매 판매 결과를 발표했다."
+      },
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Rises to No. 29 in Interbrand’s “Best Global Brands 2026”, Moves Up to Fourth Among Automotive Brands",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001297",
+      "companies": {
+        "00164742": "현대자동차의 브랜드 순위 상승과 관련 사업 활동을 발표했다."
+      },
+      "date": "2026-10-28"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Delivers Bali’s First Electric Buses for Public Transport",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001295",
+      "companies": {
+        "00164742": "현대자동차가 발리 대중교통용 전기 버스를 공급했다."
+      },
+      "date": "2026-10-23"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Unveils ELANTRA N MONOCHROME with Understated High-Performance Theme",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001290",
+      "companies": {
+        "00164742": "현대자동차가 엘란트라 N 모노크롬의 디자인과 제품 특징을 공개했다."
+      },
+      "date": "2026-10-19"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor and Kia Present Smart Manufacturing Technologies and SDF Vision at E-FOREST TECH DAY 2026",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001292",
+      "companies": {
+        "00164742": "현대자동차와 기아가 공동 스마트 제조 행사와 소프트웨어 중심 공장 전환을 발표했다."
+      },
+      "date": "2026-10-18"
+    },
+    {
+      "kind": "press_release",
+      "title": "Hyundai Motor Company Presents All-New BAYON and TUCSON SUVs Plus Key Brand Initiatives at Paris Motor Show",
+      "url": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001287",
+      "companies": {
+        "00164742": "현대자동차가 파리 모터쇼에서 신형 바이욘과 투싼을 발표했다."
+      },
+      "date": "2026-10-12"
+    },
+    {
+      "kind": "blog",
+      "title": "자동차 디자이너가 그린 열차는 무엇이 다를까? 현대로템·현대자동차 차세대 고속철도차량 콘셉트",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/hyundai-rotem-hyundai-motor-company-next-generation-high-speed-train-design",
+      "companies": {
+        "00164742": "현대자동차 상용선행디자인팀이 현대로템과 고속열차 내외장 디자인을 공동 개발했다."
+      },
+      "date": "2026-11-20"
+    },
+    {
+      "kind": "blog",
+      "title": "아트 오브 스틸을 현실로 구현한 차체 성형 기술의 비밀",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/art-of-steel-body-forming-technology-secrets",
+      "companies": {
+        "00164742": "현대자동차 개발팀이 아반떼와 투싼 차체 성형의 기술 과제를 설명한다."
+      },
+      "date": "2026-11-12"
+    },
+    {
+      "kind": "blog",
+      "title": "아름다운 디자인을 완벽한 품질로 구현하는 차체 성형 기술",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/hyundai-art-of-steel-tech",
+      "companies": {
+        "00164742": "현대자동차의 투싼·아반떼 성형 해석과 검증을 소개한다."
+      },
+      "date": "2026-11-11"
+    },
+    {
+      "kind": "blog",
+      "title": "전 세계 가족을 위한 SUV의 가치를 확인하다, 디 올 뉴 투싼 테크 익스피리언스 데이",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/all-new-tucson-tech-experience-day-global-family-suv-value",
+      "companies": {
+        "00164742": "현대자동차가 공개한 투싼의 차체 성형 및 안전 설계 기술을 설명한다."
+      },
+      "date": "2026-10-26"
+    },
+    {
+      "kind": "blog",
+      "title": "세계인의 SUV, 투싼의 여정을 돌아보다",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/tucson-heritage-mk5",
+      "companies": {
+        "00164742": "현대자동차가 투싼의 세대별 안전·하이브리드·디지털 기술 발전을 설명한다."
+      },
+      "date": "2026-10-21"
+    },
+    {
+      "kind": "blog",
+      "title": "눈에 보이는 변화, 그 너머의 기술… 디 올 뉴 투싼의 5가지 혁신",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/all-new-tucson-innovations",
+      "companies": {
+        "00164742": "현대자동차가 투싼의 차체 성형과 하이브리드 기술을 소개한다."
+      },
+      "date": "2026-10-13"
+    },
+    {
+      "kind": "blog",
+      "title": "본질에 집중한 글로벌 베스트셀링 SUV, 디 올 뉴 투싼 시승기",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/tucson-road-impressions",
+      "companies": {
+        "00164742": "현대자동차 투싼 하이브리드의 구동 특성과 플레오스 커넥트를 소개한다."
+      },
+      "date": "2026-10-13"
+    },
+    {
+      "kind": "blog",
+      "title": "최고의 자리에 안주하지 않는 혁신 리더, 더 뉴 그랜저 개발 스토리",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/the-new-grandeur-development-story",
+      "companies": {
+        "00164742": "현대자동차 개발팀이 그랜저 부분변경의 설계와 플레오스 커넥트 적용을 설명한다."
+      },
+      "date": "2026-07-09"
+    },
+    {
+      "kind": "blog",
+      "title": "1세대부터 7세대까지… 40년 진화의 정점에 선 더 뉴 그랜저",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/hyundai-grandeur-history",
+      "companies": {
+        "00164742": "현대자동차 그랜저의 세대별 기술과 편의 사양을 정리한다."
+      },
+      "date": "2026-06-02"
+    },
+    {
+      "kind": "blog",
+      "title": "더 편안하고 더 똑똑해졌다, 더 뉴 그랜저와 보낸 하루",
+      "url": "https://www.hyundaimotorgroup.com/ko/story/hyundai-the-new-grandeur-test-drive",
+      "companies": {
+        "00164742": "현대자동차의 그랜저 시승을 통해 글레오 AI와 인포테인먼트 플랫폼을 소개한다."
+      },
+      "date": "2026-06-01"
+    },
+    {
+      "kind": "conference",
+      "title": "Hyundai Global Press Conference",
+      "url": "https://laautoshow.com/press_releases/38942/",
+      "companies": {
+        "00164742": "주최 측 일정에 현대자동차 발표가 있고, 공식 현대차 보도자료는 신형 엘란트라 공개를 확인한다."
+      },
+      "event": "AutoMobility LA 2026",
+      "session": "Hyundai Global Press Conference",
+      "assets": [],
+      "related_press": [
+        "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001306"
+      ],
+      "date": "2026-11-19"
+    },
+    {
+      "kind": "conference",
+      "title": "Hyundai Motor press conference",
+      "url": "https://www.hyundai.news/eu/articles/press-releases/hyundai-attends-paris-motor-show-2026.html",
+      "companies": {
+        "00164742": "현대차 유럽의 발표 일정과 본사 보도자료에서 신형 바이욘·투싼 발표를 확인했다."
+      },
+      "event": "Paris Motor Show 2026",
+      "session": "Hyundai Motor press conference",
+      "assets": [],
+      "related_press": [
+        "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001287"
+      ],
+      "date": "2026-10-12"
+    },
+    {
+      "kind": "conference",
+      "title": "신형 투싼 핵심 기술과 개발 배경 공개",
+      "url": "https://www.hyundaimotorgroup.com/ko/news/hyundai-motor-company-the-all-new-tucson-tech-experience-day",
+      "companies": {
+        "00164742": "현대자동차가 신형 투싼의 차체 성형과 하이브리드 기술을 설명했다."
+      },
+      "event": "The all-new TUCSON Tech & Experience Day",
+      "session": "신형 투싼 핵심 기술과 개발 배경 공개",
+      "event_end_date": "2026-10-08",
+      "assets": [],
+      "related_press": [],
+      "date": "2026-10-07"
+    },
+    {
+      "kind": "analyst_report",
+      "title": "자동차: 환율이 가져간 이익, 로봇과 자율주행이 돌려줄 가치",
+      "url": "https://file.hanaw.com/download/research/FileServer/WEB/industry/industry/2026/11/12/2027_Automotive.pdf",
+      "companies": {
+        "00164742": "현대차 005380 독립 기업분석을 포함한다."
+      },
+      "broker": "하나증권",
+      "analysts": [
+        "송선재"
+      ],
+      "report_type": "industry",
+      "date": "2026-11-13"
+    },
+    {
+      "kind": "analyst_report",
+      "title": "현대차 (005380) — Company Update",
+      "url": "https://www.samsungpop.com/common.do?cmd=down&contentType=application%2Fpdf&fileName=2010%2F2026102812253640K_02_09.pdf&inlineYn=Y&saveKey=research.pdf",
+      "companies": {
+        "00164742": "현대차의 실적 전망 및 자율주행 전략을 독립 분석한다."
+      },
+      "broker": "삼성증권",
+      "analysts": [
+        "임은영"
+      ],
+      "report_type": "stock",
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "ir",
+      "title": "2026 Annual Guidance Update",
+      "url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/investor-relations/ir-events/pdf/en/2026/1029/2026-annual-guidance-update-en.pdf",
+      "companies": {
+        "00164742": "현대자동차 공식 IR 홈에서 연결한 연간 가이던스 수정 PDF."
+      },
+      "material_type": "guidance",
+      "assets": [],
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "ir",
+      "title": "2026 Q3 Presentation",
+      "url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/investor-relations/ir-events/pdf/en/2026/1029/q3-2026-earnings-call-pt-eng.pdf",
+      "companies": {
+        "00164742": "현대자동차 공식 IR 홈에서 직접 연결한 실적 프레젠테이션 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "ir",
+      "title": "2026 CEO Investor Day | Hyundai Motor Company",
+      "url": "https://www.youtube.com/watch?v=nW9p6MBmWrI",
+      "companies": {
+        "00164742": "현대자동차 공식 채널의 투자자 설명회 영상. 행사일은 현대차 IR 일정과 보도자료로 확인했다."
+      },
+      "material_type": "investor_day_video",
+      "assets": [],
+      "date": "2026-08-26"
+    },
+    {
+      "kind": "ir",
+      "title": "2026 Q2 Presentation",
+      "url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/investor-relations/ir-events/pdf/en/2026/q2-2026-earnings-call-pt-final-en.pdf",
+      "companies": {
+        "00164742": "현대자동차 공식 IR 홈에서 직접 연결한 실적 프레젠테이션 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-07-23"
+    },
+    {
+      "kind": "ir",
+      "title": "2026 Q1 Presentation",
+      "url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/investor-relations/ir-events/pdf/en/2026/q1-2026-earnings-call-pt-final-en.pdf",
+      "companies": {
+        "00164742": "현대자동차 공식 IR 홈에서 직접 연결한 실적 프레젠테이션 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-04-23"
+    },
+    {
+      "kind": "ir",
+      "title": "2025 Q4 Presentation",
+      "url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/investor-relations/ir-events/pdf/en/2026/q4-2025-earnings-call-pt-en.pdf",
+      "companies": {
+        "00164742": "현대자동차 공식 IR 홈에서 직접 연결한 실적 프레젠테이션 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-01-29"
+    },
+    {
+      "kind": "ir_home",
+      "title": "Hyundai Motor Investor Relations",
+      "url": "https://www.hyundai.com/worldwide/en/company/ir",
+      "companies": {
+        "00164742": "현대자동차 공식 투자자 정보."
+      }
+    },
+    {
+      "kind": "ir_library",
+      "title": "IR Events",
+      "url": "https://www.hyundai.com/worldwide/en/company/ir/ir-events",
+      "companies": {
+        "00164742": "기업 공식 실적 발표 및 IR 자료 목록."
+      }
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Announces 3Q26 Financial Results",
+      "url": "https://news.skhynix.com/en/q3-2026-business-results/",
+      "companies": {
+        "00164779": "SK하이닉스가 분기 실적과 HBM4 확대를 발표했다."
+      },
+      "date": "2026-10-28"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Launches ‘SK hynix Ventures’ in Silicon Valley to Expand Global AI Ecosystem Investment",
+      "url": "https://news.skhynix.com/en/sk-hynix-ventures/",
+      "companies": {
+        "00164779": "SK하이닉스가 실리콘밸리에 AI 생태계 투자 조직을 출범시켰다."
+      },
+      "date": "2026-09-18"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Holds Groundbreaking Ceremony for HBM Production Base in Indiana, “Beginning a New Future for US-Korea AI”",
+      "url": "https://news.skhynix.com/en/groundbreaking-ceremony-in-indiana/",
+      "companies": {
+        "00164779": "SK하이닉스가 미국 인디애나 HBM 생산 거점 착공을 발표했다."
+      },
+      "date": "2026-08-28"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Accelerates 40 Trillion won Share Repurchase and Cancellation Program, Pursues Shareholder Return Expansion to ‘Over 50% of FCF’",
+      "url": "https://news.skhynix.com/en/share-buyback-and-retirement/",
+      "companies": {
+        "00164779": "SK하이닉스가 자사주 매입·소각과 주주환원 계획을 발표했다."
+      },
+      "date": "2026-08-19"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Invests 54 Trillion Won in Yongin Y2 and Cheongju M17 to Secure Mid-to-Long-Term Production Base for AI Memory Demand",
+      "url": "https://news.skhynix.com/en/fab-facility-investment-2026/",
+      "companies": {
+        "00164779": "SK하이닉스가 용인 Y2 및 청주 M17 투자를 발표했다."
+      },
+      "date": "2026-08-07"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Unveils First HBF Standard Specifications with Sandisk, Presenting AI Memory Solutions at ‘FMS 2026’",
+      "url": "https://news.skhynix.com/en/hbf-at-fms-2026/",
+      "companies": {
+        "00164779": "SK하이닉스와 샌디스크가 FMS에서 HBF 규격을 공개했다."
+      },
+      "date": "2026-08-04"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Announces 2Q26 Financial Results",
+      "url": "https://news.skhynix.com/en/q2-2026-business-results/",
+      "companies": {
+        "00164779": "SK하이닉스가 2분기 실적을 발표했다."
+      },
+      "date": "2026-07-29"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK Group and NVIDIA Expand Strategic Partnership Across AI Factories and Next-Generation Memory",
+      "url": "https://news.skhynix.com/en/skhynix-nvidia-partnership-2026/",
+      "companies": {
+        "00164779": "그룹 발표가 SK하이닉스와 NVIDIA의 차세대 메모리 협력을 명시한다."
+      },
+      "date": "2026-07-25"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Lists ADRs on NASDAQ, Elevating Global Status at the Heart of Capital Markets",
+      "url": "https://news.skhynix.com/en/skhynix-lists-adrs-on-nasdaq/",
+      "companies": {
+        "00164779": "SK하이닉스가 미국 나스닥 ADR 상장을 발표했다."
+      },
+      "date": "2026-07-10"
+    },
+    {
+      "kind": "press_release",
+      "title": "SK hynix Ships Samples of 12-Layer Next-Gen ‘HBM4E’",
+      "url": "https://news.skhynix.com/en/sk-hynix-ships-samples-of-12-layer-next-gen-hbm4e-2/",
+      "companies": {
+        "00164779": "SK하이닉스가 12단 HBM4E 샘플 공급을 발표했다."
+      },
+      "date": "2026-06-18"
+    },
+    {
+      "kind": "blog",
+      "title": "[AI Ecosystem] Completing AI: Physical intelligence and the role of memory",
+      "url": "https://news.skhynix.com/en/ai-ecosystem-series-ep4-5/",
+      "companies": {
+        "00164779": "SK하이닉스 기술 연재가 물리 AI에 필요한 메모리 역할을 설명한다."
+      },
+      "date": "2026-11-17"
+    },
+    {
+      "kind": "blog",
+      "title": "‘Safeguarding against system failures and cyber threats’: SK hynix builds trust in physical AI memory",
+      "url": "https://news.skhynix.com/en/iec-61508-certification-2026/",
+      "companies": {
+        "00164779": "SK하이닉스가 물리 AI용 메모리의 기능 안전 인증을 설명한다."
+      },
+      "date": "2026-11-11"
+    },
+    {
+      "kind": "blog",
+      "title": "[Tech Note] Why does AI still have to wait with tens of thousands of GPUs? How silicon photonics and CPO are building the ‘highways of light’",
+      "url": "https://news.skhynix.com/en/tech-note-series-ep3/",
+      "companies": {
+        "00164779": "SK하이닉스 기술 연재가 실리콘 포토닉스와 CPO의 대역폭 역할을 다룬다."
+      },
+      "date": "2026-10-29"
+    },
+    {
+      "kind": "blog",
+      "title": "[AI Infrastructure Insight] How AI infrastructure will be designed for the future",
+      "url": "https://news.skhynix.com/en/ai-infrastructure-insight-ep4/",
+      "companies": {
+        "00164779": "SK하이닉스가 AI 인프라의 공동 설계와 초기 고객 협업을 설명한다."
+      },
+      "date": "2026-10-22"
+    },
+    {
+      "kind": "blog",
+      "title": "[AI Ecosystem] The semiconductor paradigm shifts toward memory",
+      "url": "https://news.skhynix.com/en/ai-ecosystem-series-ep4/",
+      "companies": {
+        "00164779": "SK하이닉스 기술 연재가 HBM, 하이브리드 본딩, PIM과 메모리 중심 설계를 다룬다."
+      },
+      "date": "2026-10-21"
+    },
+    {
+      "kind": "blog",
+      "title": "[Inside the Research] In the AI era, NAND moves beyond storage to computing… 3D FeNAND co-optimization at IEEE",
+      "url": "https://news.skhynix.com/en/research-inside-ep2/",
+      "companies": {
+        "00164779": "SK하이닉스 연구진이 IEEE에서 공유한 3D FeNAND 공동 최적화 연구를 소개한다."
+      },
+      "date": "2026-10-14"
+    },
+    {
+      "kind": "blog",
+      "title": "[AI Ecosystem] Redesigning infrastructure: Why architecture determines performance",
+      "url": "https://news.skhynix.com/en/ai-ecosystem-series-ep3/",
+      "companies": {
+        "00164779": "SK하이닉스 기술 연재가 데이터 이동과 메모리 구조가 AI 인프라 성능에 미치는 영향을 설명한다."
+      },
+      "date": "2026-10-02"
+    },
+    {
+      "kind": "blog",
+      "title": "[AI infrastructure insight] Why power and cooling have become the next challenge for AI data centers",
+      "url": "https://news.skhynix.com/en/ai-infrastructure-insight-ep3/",
+      "companies": {
+        "00164779": "SK하이닉스가 AI 데이터센터의 전력 및 냉각 문제를 설명한다."
+      },
+      "date": "2026-09-30"
+    },
+    {
+      "kind": "conference",
+      "title": "Enabling Agentic AI Serving with Disaggregated Memory Pools",
+      "url": "https://news.skhynix.com/en/sc26-ai-hpc-exhibition/",
+      "companies": {
+        "00164779": "SK하이닉스 민영훈 TL이 분리형 메모리 풀과 MARS 아키텍처를 발표했다."
+      },
+      "event": "Supercomputing 2026",
+      "session": "Enabling Agentic AI Serving with Disaggregated Memory Pools",
+      "event_end_date": "2026-11-19",
+      "assets": [
+        {
+          "type": "organizer",
+          "url": "https://sc26.supercomputing.org/all-dates-deadlines/"
+        }
+      ],
+      "related_press": [],
+      "date": "2026-11-17"
+    },
+    {
+      "kind": "conference",
+      "title": "Introduction to Memory-centric AI Rack Systems (MARS)",
+      "url": "https://news.skhynix.com/en/ocp-global-summit-2026/",
+      "companies": {
+        "00164779": "SK하이닉스 김호식 부사장이 행사 첫날 메모리 중심 AI 랙을 제안했다."
+      },
+      "event": "OCP Global Summit 2026",
+      "session": "Introduction to Memory-centric AI Rack Systems (MARS)",
+      "assets": [
+        {
+          "type": "organizer",
+          "url": "https://www.opencompute.org/events/ocp-summit/2026-ocp-global-summit/"
+        }
+      ],
+      "related_press": [],
+      "date": "2026-10-12"
+    },
+    {
+      "kind": "conference",
+      "title": "Beyond One-Size-Fits-All: PIM, HBF and More for the New Spectrum of AI Serving",
+      "url": "https://news.skhynix.com/en/ai-infra-summit-2026/",
+      "companies": {
+        "00164779": "SK하이닉스 임의철 부사장이 둘째 날 Data Movement 세션에서 차세대 메모리 연구를 발표했다."
+      },
+      "event": "AI Infra Summit 2026",
+      "session": "Beyond One-Size-Fits-All: PIM, HBF and More for the New Spectrum of AI Serving",
+      "assets": [],
+      "related_press": [],
+      "date": "2026-09-16"
+    },
+    {
+      "kind": "analyst_report",
+      "title": "SK하이닉스: 주주환원 확대와 낮아진 밸류에이션, 시간은 여전히 매수자의 편",
+      "url": "https://msg.ls-sec.co.kr/eum/K_20261114_31922_71.pdf",
+      "companies": {
+        "00164779": "SK하이닉스의 주주환원과 현금흐름을 분석한다."
+      },
+      "broker": "LS증권",
+      "analysts": [
+        "정우성"
+      ],
+      "report_type": "stock",
+      "date": "2026-11-16"
+    },
+    {
+      "kind": "ir",
+      "title": "SK hynix FY2026 Q3 Earnings Results",
+      "url": "https://mis-prod-koce-homepage-cdn-01-blob-ep.azureedge.net/web/attach/21453379321009165.pdf",
+      "companies": {
+        "00164779": "SK하이닉스 공식 IR 홈에서 직접 연결한 3분기 실적 발표 PDF."
+      },
+      "material_type": "earnings_presentation",
+      "assets": [],
+      "date": "2026-10-28"
+    },
+    {
+      "kind": "ir",
+      "title": "Q3 2026 Earnings Conference Call Access Details",
+      "url": "https://news.skhynix.com/en/q3-2026-earnings-conference-call/",
+      "companies": {
+        "00164779": "SK하이닉스가 실적 콜 접속 안내를 게시했다. 재생 서비스는 이메일 인증을 요구한다."
+      },
+      "material_type": "earnings_webcast_access",
+      "assets": [],
+      "date": "2026-10-28"
+    },
+    {
+      "kind": "ir_home",
+      "title": "SK hynix Investor Relations",
+      "url": "https://www.skhynix.com/ir/UI-FR-IR01/",
+      "companies": {
+        "00164779": "SK하이닉스 공식 투자자 정보."
+      }
+    },
+    {
+      "kind": "ir_library",
+      "title": "IR Materials",
+      "url": "https://www.skhynix.com/ir/UI-FR-IR12_T1",
+      "companies": {
+        "00164779": "기업 공식 실적 발표 및 IR 자료 목록."
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "corp_code": "00126380",
+      "kind": "conference",
+      "reason": "공식 페이지에 세션명과 삼성전자 발표자가 나온 OCP와 FMS를 채택했다. 행사 안내나 전시 목록만 확인한 후보는 제외했다."
+    },
+    {
+      "corp_code": "00126380",
+      "kind": "analyst_report",
+      "reason": "삼성증권 종목 리포트 1건과 하나증권 산업 리포트 1건을 수집했다. 포털 요약과 종목 순위표는 제외했다."
+    },
+    {
+      "corp_code": "00126380",
+      "kind": "ir",
+      "reason": "분기 실적 자료실의 기간 내 공개 정규 실적 발표 PDF 4건을 확보했다. 별도 행사 일정에서 자료 원문을 확인하지 못한 행사는 제외했다."
+    },
+    {
+      "corp_code": "00164779",
+      "kind": "blog",
+      "reason": "기술 연재와 연구 소개에서 8건을 확인했다. OCP와 SC26 발표를 보도한 콘텐츠는 컨퍼런스에 포함했다."
+    },
+    {
+      "corp_code": "00164779",
+      "kind": "conference",
+      "reason": "공식 본문에서 발표자·발표 주제·행사 기간을 함께 확인한 SC26, OCP, AI Infra Summit을 채택했다."
+    },
+    {
+      "corp_code": "00164779",
+      "kind": "analyst_report",
+      "reason": "LS증권 종목 리포트 1건과 하나증권 산업 리포트 1건을 수집했다. 포털 요약과 종목 순위표는 제외했다."
+    },
+    {
+      "corp_code": "00164779",
+      "kind": "ir",
+      "reason": "IR 홈의 3분기 실적 PDF와 공식 실적 콜 접속 안내를 확인했다. 접속 안내 링크의 재생 페이지는 이메일 인증이 필요하다."
+    },
+    {
+      "corp_code": "00164742",
+      "kind": "conference",
+      "reason": "현대자동차 발표를 확인한 LA·파리 모터쇼와 자체 투싼 기술설명회를 채택했다. 그룹 공동 행사 중 법인 발표 세션을 확인하지 못한 후보는 제외했다."
+    },
+    {
+      "corp_code": "00164742",
+      "kind": "analyst_report",
+      "reason": "삼성증권 종목 리포트 1건과 하나증권 자동차 산업 리포트 1건을 수집했다. 포털 요약과 종목 순위표는 제외했다."
+    },
+    {
+      "corp_code": "00164742",
+      "kind": "ir",
+      "reason": "공식 분기 실적 PDF 4건, 가이던스 수정 PDF와 CEO Investor Day 영상 1건을 확보했다. 공개 개별 자료가 확인되지 않은 NDR 일정은 제외했다."
+    }
+  ]
+}

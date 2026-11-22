@@ -95,7 +95,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="로컬 코스피 공시 또는 기업 조사 자료를 D1으로 동기화합니다.")
     parser.add_argument("--db", type=Path, default=database_path())
     parser.add_argument("--dry-run", action="store_true", help="D1에 접속하지 않고 동기화 대상과 크기를 확인")
-    parser.add_argument("--research-only", action="store_true", help="기업 소개와 채용 자료만 동기화")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--research-only", action="store_true", help="기업 소개와 채용 자료만 동기화")
+    modes.add_argument("--materials-snapshot", type=Path, help="검토된 5종 기업 리서치 스냅샷 동기화")
     args = parser.parse_args()
     account = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")
     database = os.getenv("DART_D1_DATABASE_ID", "")
@@ -109,7 +111,11 @@ def main() -> int:
     endpoint = f"https://api.cloudflare.com/client/v4/accounts/{account}/d1/database/{database}/query"
     count = largest_payload = 0
     try:
-        if args.research_only:
+        if args.materials_snapshot:
+            from .materials_d1 import material_updates
+
+            rows = (row for row in material_updates(args.db.expanduser(), args.materials_snapshot.expanduser()))
+        elif args.research_only:
             from .research_d1 import research_updates
 
             rows = research_updates(args.db.expanduser())
@@ -121,7 +127,7 @@ def main() -> int:
                 if not args.dry_run:
                     send_updates(endpoint, token, [statement for pair in group for statement in pair])
                 count += len(group)
-    except (ValueError, sqlite3.Error) as exc:
+    except (OSError, KeyError, TypeError, ValueError, sqlite3.Error) as exc:
         print(f"D1 동기화 중단 ({count}개 처리): {exc}", file=sys.stderr)
         return 1
     print(f"{'D1 동기화 대상' if args.dry_run else 'D1 동기화 완료'} {count}개 · 최대 JSON {largest_payload:,}바이트")
